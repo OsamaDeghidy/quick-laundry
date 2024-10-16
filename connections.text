@@ -1,3 +1,28 @@
+https://www.thequicklaundry.com/delivery-agent-signup/   #delivery agent signup
+https://www.thequicklaundry.com/available-orders/   #available orders
+https://www.thequicklaundry.com/claim-order/   #claim order
+https://www.thequicklaundry.com/personal-orders/   #personal orders
+https://www.thequicklaundry.com/add-notes/   #add notes
+https://www.thequicklaundry.com/order-details/   #order details
+https://www.thequicklaundry.com/update-order-status/   #update order status 
+https://www.thequicklaundry.com/profile/   #profile
+https://www.thequicklaundry.com/edit-profile/   #edit profile
+https://www.thequicklaundry.com/manage-profile-or-order/   #manage profile or order
+https://www.thequicklaundry.com/change-password/   #change password
+https://www.thequicklaundry.com/password-change-done/   #password change done
+https://www.thequicklaundry.com/login/   #login
+https://www.thequicklaundry.com/logout/   #logout
+https://www.thequicklaundry.com/signup/   #signup
+https://www.thequicklaundry.com/admin/
+  user: Admin@147
+  pass: osama147
+
+
+
+
+
+
+
 
 su sammy
 python -m venv venv
@@ -65,7 +90,7 @@ sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
 sudo nano /etc/nginx/sites-available/myproject
 server {
     listen 80;
-    server_name server_domain_or_IP;
+    server_name 143.244.173.141;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
@@ -100,10 +125,18 @@ server {
     server_name www.thequicklaundry.com;
 
     location / {
-        proxy_pass http://127.0.0.1:8000;  # or your internal Django server IP:Port
+        proxy_pass http://unix:/run/gunicorn.sock;  # or your internal Django server IP:Port
         include proxy_params;
         proxy_redirect off;
     }
 }
 
+
+accounts 
+ 
+digitalocean
+user: walidalibusiness@gmail.com   pass :Dd@48965740
+
+go daddy
+user: walidalibusiness@gmail.com   pass :Gg@48965740
 

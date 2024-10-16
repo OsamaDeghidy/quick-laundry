@@ -28,7 +28,7 @@ class Order(models.Model):
 
     order_date = models.DateTimeField(default=timezone.now)
     scheduled_date = models.DateField(default=get_default_date)
-    scheduled_time = models.TimeField(choices=TIME_CHOICES, default=get_default_time)
+    scheduled_time = models.TimeField(choices=TIME_CHOICES, default=get_default_time,null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     weight = models.DecimalField(max_digits=50, decimal_places=2, null=True, blank=True, default=0)
     price = models.DecimalField(max_digits=50, decimal_places=2, null=True, blank=True, default=0)
