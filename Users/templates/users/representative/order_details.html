@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Order Details{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Order Details for Order {{ order.id }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Order ID: {{ order.id }}</h5>
+            <p class="card-text"><strong>Phone Number:</strong> {{ order.user.userprofile.phone_number }}</p>
+            <p class="card-text"><strong>House Number:</strong> {{ order.user.userprofile.house_number }}</p>
+            <p class="card-text"><strong>Street Name:</strong> {{ order.user.userprofile.street_name }}</p>
+            <p class="card-text"><strong>Street Number:</strong> {{ order.user.userprofile.street_number }}</p>
+            <p class="card-text"><strong>Postal Code:</strong> {{ order.user.userprofile.postal_code }}</p>
+            <p class="card-text"><strong>Area:</strong> {{ order.user.userprofile.area }}</p>
+            <a href="{% url 'claim_order' order.id %}" class="btn btn-primary">Claim Order</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}

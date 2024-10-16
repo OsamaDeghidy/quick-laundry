@@ -1,0 +1,109 @@
+
+su sammy
+python -m venv venv
+>venv\scripts\activate
+>pip3 install django
+>django-admin startproject dicussion_board
+>django-admin startproject dicussion_board .
+>py manage.py runserver
+py manage.py startapp
+>c
+cyrl c
+>py manage.py runserver 5000
+>django-admin startapp boards
+------>python manage.py makemigrations
+------>python manage.py migrate
+
+py manage.py createsuperuser
+
+
+python manage.py collectstatic
+
+
+
+pip install django-celery-beat
+pip install django-bootstrap-datepicker-plus
+
+
+pip install django-paypal
+
+
+
+ 
+ssh root@143.244.173.141
+
+droplet 
+ip :143.244.173.141               pass: osam0Esmael
+
+adduser sammy                   pass : osama
+
+super user 
+admin: Admin@147               pass: osama147
+
+
+ns60.domaincontrol.com
+ns59.domaincontrol.com
+
+thequicklaundry.com
+
+su sammy
+cd ~/myprojectdir
+source myprojectenv/bin/activate
+deactivate
+
+sudo apt install snap
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot/usr/bin/certbot
+sudo certbot --nginx
+sudo systemctl restart gunicorn
+sudo systemctl daemon-reload 
+sudo systemctl restart gunicorn.socket gunicorn.service
+sudo nginx -t && sudo systemctl restart nginx
+sudo nano /etc/nginx/sites-available/myproject
+sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
+
+sudo nano /etc/nginx/sites-available/myproject
+server {
+    listen 80;
+    server_name server_domain_or_IP;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/sammy/myprojectdir;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+
+
+
+
+
+ALLOWED_HOSTS = ['thequicklaundry.com', 'www.thequicklaundry.com']
+
+
+
+server {
+    listen 80;
+    server_name thequicklaundry.com;
+
+    location / {
+        return 301 http://www.thequicklaundry.com$request_uri;
+    }
+}
+
+server {
+    listen 80;
+    server_name www.thequicklaundry.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;  # or your internal Django server IP:Port
+        include proxy_params;
+        proxy_redirect off;
+    }
+}
+
+

@@ -1,0 +1,122 @@
+{% extends 'base.html' %} {% block title %} Register {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %} {% block body %}
+
+<!-- Page content -->
+
+
+    <!-- Page Header Start -->
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="mb-4 mb-md-0 text-white">Contact Us</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn text-white" href="{% url 'login' %}">login</a>
+                        <i class="fas fa-angle-right text-white"></i>
+                        <a class="btn text-white" href="{% url 'signup' %}">sign up</a>
+                        <div class="card-body px-lg-5 py-lg-5">
+                           
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header Start -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container" style="max-width: 900px;">
+            <div class="row">
+                
+                <div class="col-12">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                        <form method="post" >
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        {{ user_form.first_name.label_tag }}
+                                        {{ user_form.first_name }}
+                                        <p class="help-block text-danger">{{ user_form.first_name.errors }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        {{ user_form.email.label_tag }}
+                                        {{ user_form.email }}
+                                        <p class="help-block text-danger">{{ user_form.email.errors }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        {{ user_form.username.label_tag }}
+                                        {{ user_form.username }}
+                                        <p class="help-block text-danger">{{ user_form.username.errors }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="control-group">
+                                        {{ user_form.password.label_tag }}
+                                        {{ user_form.password }}
+                                        <p class="help-block text-danger">{{ user_form.password.errors }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ profile_form.phone_number.label_tag }}
+                                {{ profile_form.phone_number }}
+                                <p class="help-block text-danger">{{ profile_form.phone_number.errors }}</p>
+                            </div>
+                            <div class="control-group">
+                                {{ profile_form.house_number.label_tag }}
+                                {{ profile_form.house_number }}
+                                <p class="help-block text-danger">{{ profile_form.house_number.errors }}</p>
+                            </div>
+
+                            <div class="control-group">
+                                {{ profile_form.street_name.label_tag }}
+                                {{ profile_form.street_name }}
+                                <p class="help-block text-danger">{{ profile_form.street_name.errors }}</p>
+                            </div>
+                            <div class="control-group">
+                                {{ profile_form.street_number.label_tag }}
+                                {{ profile_form.street_number }}
+                                <p class="help-block text-danger">{{ profile_form.street_number.errors }}</p>
+                            </div>
+                            <div class="control-group">
+                                {{ profile_form.postal_code.label_tag }}
+                                {{ profile_form.postal_code }}
+                                <p class="help-block text-danger">{{ profile_form.postal_code.errors }}</p>
+                            </div>
+                            <div class="control-group">
+                                {{ profile_form.area.label_tag }}
+                                {{ profile_form.area }}
+                                <p class="help-block text-danger">{{ profile_form.area.errors }}</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% include "users/inf.html" %}
+            </div>
+        </div>
+    </div>
+
+
+    
+    <!-- Contact End -->
+{% endblock body %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

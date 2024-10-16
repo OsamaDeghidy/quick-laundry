@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Add Notes{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Add Notes for Order {{ order.id }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" id="notes" name="notes" rows="5">{{ order.notes }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock body %}

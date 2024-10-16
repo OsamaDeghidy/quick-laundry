@@ -1,0 +1,56 @@
+
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'fr',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Navbar Start -->
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 pl-3 pl-lg-5">
+            <a href="{% url 'mainview' %}" class="navbar-brand">
+                <h1 class="m-0 text-secondary  notranslate"><span class="text-primary">Quick</span>Laundry</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="{% url 'mainview' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'hawitwork' %}" class="nav-item nav-link active">How We Work </a>
+                  
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Profile</a>
+                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                        {% if user.is_authenticated %}
+                            
+                                <a href="{% url 'profile' %}" class="dropdown-item">Profile</a>
+                            
+                            
+                                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                                <a href="{% url 'change password' %}" class="dropdown-item">chang password</a>
+                                
+                            
+                        {% else %}
+                            
+                                <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                            
+                        {% endif %}
+                       
+                        </div>
+                    </div>
+                   <a href="https://wa.me/14376029293" class=" nav-item nav-link ">+14376029293</a>
+                   <div class="nav-item nav-link  " id="google_translate_element"></div>
+                    
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
