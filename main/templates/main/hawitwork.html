@@ -1,0 +1,375 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickLaundry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+
+<!-- jQuery and Bootstrap JS -->
+
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1, h4, h6 {
+            font-weight: bold;
+        }
+
+        h4, h6 {
+            font-size: 1.2rem;
+        }
+
+        .hero-section {
+            background-image: url("{% static 'img/back-ground.png' %}");
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .steps-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .step-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .step-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .schedule-btn {
+            background-color: #00178a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .schedule-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hover effects for navbar */
+        .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 50px 0;
+        }
+
+        .white-divider {
+            height: 20px;
+            background-color: #f8f9fa;
+        }
+
+        /* تحسين محاذاة النصوص */
+        .text-custom-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* تحسين ألوان النصوص */
+        .text-dark-blue {
+            color: #003366;
+        }
+
+        .text-primary-blue {
+            color: #007bff;
+        }
+
+        .working-process-title {
+            color: #ff6600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* تحسين ألوان وتنسيق النصوص */
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 50px 0;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+
+            h6 {
+                font-size: 1rem;
+            }
+
+            .step-box {
+                margin-bottom: 30px;
+            }
+
+            .carousel-caption {
+                font-size: 0.9rem;
+            }
+
+            .schedule-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section h6 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section h4 {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .carousel-caption {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'fr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <header class="bg-white py-3 shadow-sm">
+        <nav class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="{% static 'img/logo.png' %}" alt="QuickLaundry Logo" width="400" class="me-2"> 
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" href="{% url 'mainview' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" href="{% url 'hawitwork' %}">How We Work</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu border-0 rounded-0 m-0" aria-labelledby="profileDropdown">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'profile' %}" class="dropdown-item">Profile</a>
+                            <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                            <a href="{% url 'change password' %}" class="dropdown-item">Change Password</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" href="https://wa.me/14376029293">+14376029293</a>
+                </li>
+                <li class="nav-item" id="google_translate_element"></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+
+
+
+<!-- Working Process Section -->
+<div class="m-3">
+    <h1 class="text-uppercase text-center font-weight-medium mb-3" style="color: #005982;">How We Work</h1>
+</div>
+
+
+<div class=" hero-section container-fluid pt-5 pb-3" >
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center bg-light mb-4 px-4" style="height: 400px;">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle mb-4" style="width: 200px; height: 200px;">
+                        <img class="img-fluid" src="{% static 'img/We bring back.svg' %}" alt="">
+                    </div>
+                    <h4 class="font-weight-bold m-0" style="color: #0091d5;">Bag up
+                        your dirty
+                        laundry</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center bg-light mb-4 px-4" style="height: 400px;">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle mb-4" style="width: 200px; height: 200px;">
+                        <img class="img-fluid" src="{% static 'img/scadul.svg' %}" alt="">
+                    </div>
+                    <h4 class="font-weight-bold m-0" style="color: #0091d5;">Schedule a free
+                        pick up
+                       </h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center bg-light mb-4 px-4" style="height: 400px;">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle mb-4" style="width: 200px; height: 200px;">
+                        <img class="img-fluid" src="{% static 'img/packup.png' %}" alt="">
+                    </div>
+                    <h4 class="font-weight-bold m-0" style="color: #0091d5;">We pick up
+                        your dirty
+                        clothes</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center bg-light mb-4 px-4" style="height: 400px;">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle mb-4" style="width: 200px; height: 200px;">
+                        <img class="img-fluid" src="{% static 'img/wash.png' %}" alt="">
+                    </div>
+                    <h6 class="font-weight-bold m-0" style="color: #0091d5;">We wash
+                        and dry.
+                        Fresh and clean</h6>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center bg-light mb-4 px-4" style="height: 400px;">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle mb-4" style="width: 200px; height: 200px;">
+                        <img class="img-fluid" src="{% static 'img/fold and sort.svg' %}" alt="">
+                    </div>
+                    <h6 class="font-weight-bold m-0" style="color: #0091d5;">We fold and sort
+                        for you</h6>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center bg-light mb-4 px-4" style="height: 400px;">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow rounded-circle mb-4" style="width: 200px; height: 200px;">
+                        <img class="img-fluid" src="{% static 'img/bring back.png' %}" alt="">
+                    </div>
+                    <h6 class="font-weight-bold m-0" style="color: #0091d5;">We bring back your fresh
+                        laundry right to your doorstep
+                        on the same day</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Working Process Start -->
+<div class="container-fluid pt-5">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 150px; height: 150px; border-width: 15px !important;">
+                        <h2 class="display-2 text-primary m-0">1</h2>
+                    </div>
+                    <h3 class="font-weight-bold m-0 mt-2">Place Order</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 150px; height: 150px; border-width: 15px !important;">
+                        <h2 class="display-2 text-primary m-0">2</h2>
+                    </div>
+                    <h3 class="font-weight-bold m-0 mt-2"> Pick Up</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 150px; height: 150px; border-width: 15px !important;">
+                        <h2 class="display-2 text-primary m-0">3</h2>
+                    </div>
+                    <h3 class="font-weight-bold m-0 mt-2">Dry Cleaning</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 150px; height: 150px; border-width: 15px !important;">
+                        <h2 class="display-2 text-primary m-0">4</h2>
+                    </div>
+                    <h3 class="font-weight-bold m-0 mt-2"> Delivery</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Working Process End -->
+
+
+
+
+<div class="hero-section container-fluid bg-primary text-white mt-5 pt-5 px-sm-3 px-md-5">
+    <div class="row pt-5">
+        <div class="col-lg-3 col-md-6 mb-5">
+            <div class="d-flex align-items-start">
+                <img src="{% static 'img/logo.png' %}" alt="QuickLaundry Logo" width="300" class="me-2"> 
+            </div>
+            <p>We pick up your dirty laundry and bring it back to you clean, folded and sorted, all on the same day</p>
+            
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h4 class="text-white mb-4">Get In Touch</h4>
+            
+            <p><i class="fa fa-map-marker-alt mr-1"></i>1012 O'Connor Dr, East York, ON M4B 2T3</p>
+            <p><i class="fa fa-phone-alt mr-2"></i>+14376029293</p>
+            <p><i class="fa fa-envelope mr-2"></i>quicklaundry2000@gmail.com</p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h4 class="text-white mb-4">Quick Links</h4>
+            <div class="d-flex flex-column justify-content-start">
+                <a class="text-white mb-2" href="{% url 'mainview' %}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                <a class="text-white mb-2" href="{% url 'hawitwork' %}"><i class="fa fa-angle-right mr-2"></i>How We Work</a>
+                
+                <a class="text-white" href="{% url 'manage_profile_or_order'  %}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h4 class="text-white mb-4">Order Now </h4>
+            
+                  
+                        <a href="{% url 'manage_profile_or_order'  %}" class="btn btn-primary py-md-3 px-md-5 mt-2">flat rate: 1.98/ Ib place order</a>
+        
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

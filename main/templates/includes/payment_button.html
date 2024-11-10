@@ -1,0 +1,5 @@
+<!-- payment_button.html -->
+<form action="{% url 'create_payment' order_id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Create Payment</button>
+</form>

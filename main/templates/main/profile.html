@@ -1,0 +1,174 @@
+{% extends 'base.html' %} {% load static %}{% block title %} Profile {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block body %}
+<script>
+    function updateOrderStatus() {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'update_order_status' %}",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                var orders = response.orders;
+                var ordersList = $('#order-table-body');
+                ordersList.empty();
+                for (var i = 0; i < orders.length; i++) {
+                    ordersList.append(
+                        '<tr>' +
+                        '<td data-label="ID">' + orders[i].id + '</td>' +
+                        '<td data-label="Scheduled Date">' + orders[i].scheduled_date + '</td>' +
+                        '<td data-label="Scheduled Time">' + orders[i].scheduled_time + '</td>' +
+                        '<td data-label="Order Status">' + orders[i].status + '</td>' +
+                        '<td data-label="Time Remaining">' + orders[i].time_remaining + '</td>' +
+                        '<td data-label="Payment">' + orders[i].payment_button + '</td>' +
+                        '</tr>'
+                    );
+                }
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        updateOrderStatus();
+        setInterval(updateOrderStatus, 1800000); // Update every 30 minutes
+    });
+</script>
+
+
+
+
+    
+
+
+
+      <div class="container-fluid pt-5 pb-3">
+        <div class="container">
+           
+              
+            <div class="col-lg-12 mb-4">
+                    
+                
+                    <div class="bg-light row text-center mb-2 pt-4  ">
+                        <div class="d-inline-flex flex-column align-items-center justify-content-center bg-primary rounded-circle shadow m-4" style="width: 300px; height: 300px; border: 15px solid #ffffff;">
+                            <h6 class="text-white">
+                                {{ user_profile.user.first_name }}</h6>
+                            <p class=" text-white mb-0">
+                                
+                                    {{ user_profile.user.email }}
+                            </p>
+                        </div>
+                        <div class="d-inline-flex flex-column align-items-center justify-content-center bg-primary rounded-circle shadow m-4" style="width: 300px; height: 300px; border: 15px solid #ffffff;">
+                            <h6 class="text-white">{{ user_profile.user.username.label_tag }}
+                                {{ user_profile.user.username }}</h6>
+                            <p class=" text-white mb-0">
+                               
+                                    {{ user_profile.phone_number }}</small>
+                            </p>
+                        </div>
+                        <div class="d-inline-flex flex-column align-items-center justify-content-center bg-primary rounded-circle shadow m-4" style="width: 300px; height: 300px; border: 15px solid #ffffff;">
+                            <h6 class="text-white">   {{ user_profile.house_number }}</h6>
+                            <p class=" text-white mb-0">
+                                 {{ user_profile.street_name }}-{{ user_profile.street_number }}
+                                </p>
+                                 <p class=" text-white mb-0">
+                                 {{ user_profile.area }}- {{ user_profile.area }}
+                            </p>
+                        </div>
+                       
+                       
+                    </div>
+                    
+                    <a href="{% url 'edit_profile'  %}" class="btn btn-primary py-2 px-4 align-items-center justify-content-center bg-primary rounded-circle shadow mt-2 mb-4 d-flex">Edit</a>
+                   
+            </div>
+               
+            
+        </div>
+    </div>
+   
+    
+
+    
+    
+    <div class="container-fluid pt-5 pb-3">
+        <div class="container">
+            <h1 class="display-4 text-center mb-5">Your Orders</h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Scheduled Date</th>
+                            <th>Scheduled Time</th>
+                            <th>Order Status</th>
+                            <th>Time Remaining</th>
+                            <th>Weight</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-table-body">
+                        {% for order in orders %}
+                        <tr>
+                            <td data-label="ID">{{ order.id }}</td>
+                            <td data-label="Scheduled Date">{{ order.scheduled_date }}</td>
+                            <td data-label="Scheduled Time">{{ order.scheduled_time }}</td>
+                            <td data-label="Order Status">{{ order.status }}</td>
+                            <td data-label="Time Remaining">{{ order.time_remaining }}</td>
+                            <td data-label="Weight">{{ order.weight }}</td>
+                            <td data-label="Payment">
+                                {% if order.payment_status %}
+                                <span class="badge bg-success">Paid</span>
+                                {% else %}
+                                <a href="{% url 'checkout' order.id %}" class="btn btn-primary btn-sm">Paypal ${{order.price}}</a>
+                                <a href="{% url 'checkoutstripe' order.id %}" class="btn btn-primary btn-sm">Stripe or Card ${{order.price}}</a>
+                             
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center">No orders found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* تحسين مظهر الجدول */
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #3BB9FF;
+            color: white;
+        }
+        td {
+            background-color: #f8f9fa;
+        }
+        .btn-sm {
+            font-size: 0.875rem;
+            padding: 5px 10px;
+        }
+    </style>
+    
+    
+
+</div>
+
+
+
+
+
+
+
+{% endblock body %}

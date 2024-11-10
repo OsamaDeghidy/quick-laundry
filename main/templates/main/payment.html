@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+          background-image: url("{% static 'img/back-ground.png' %}");
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            color: white;
+            background-color: #00178a;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px;
+        }
+        .order-details {
+            margin-bottom: 20px;
+        }
+        .trust-badges {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .trust-badges img {
+            max-width: 100px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo" style="background-color: #ffffff; padding: 20px; border-radius: 5px;">
+            <img src="{% static 'img/logo.png' %}" alt="Company Logo">
+        </div>
+        <h2>Checkout for Order #{{ order.id }}</h2>
+        <div class="order-details">
+            <p><strong>Total:</strong> ${{ order.price }}</p>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-block">Proceed to Pay with Stripe</button>
+        </form>
+        <div class="trust-badges">
+            <img src="{% static 'img/stripe-logo.png' %}" alt="Stripe Logo">
+            <img src="{% static 'img/secure-badge.jpg' %}" alt="Secure Payment Badge">
+        </div>
+        <p class="text-center mt-3">Your transaction is secure and encrypted.</p>
+        <p class="text-center">If you have any questions, please <a href="contact.html">contact us</a>.</p>
+    </div>
+</body>
+</html>
