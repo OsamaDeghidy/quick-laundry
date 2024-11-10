@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %}{% block title %} Payment Successful {% endblock title %}
+
+{% block body %}
+<div class="container my-5" style="color: #f8f9fa;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-success text-white text-center">
+                    <h2>Payment Successful</h2>
+                </div>
+                <div class="card-body" style="background-image: url('{% static 'img/back-ground.png' %}');">
+                    <div class="text-center mb-4">
+                        <img src="{% static 'img/success-icon.png' %}" alt="Success Icon" class="success-icon">
+                    </div>
+                    <h3 class="text-center mb-4 text-white">Thank you for your payment!</h3>
+                    <div class="row">
+                       
+                        <div class="col-md-12">
+                            <h4 class="text-white">Order Details:</h4>
+                            <p><strong>Product:</strong> {{product.name}}</p>
+                            <p><strong>Price:</strong> ${{product.price}}</p>
+                            <p><strong>Description:</strong> {{product.description}}</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'profile' %}" class="btn btn-primary">Back to profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .success-icon {
+        width: 100px;
+        height: 100px;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+        background-color: #28a745;
+        color: white;
+    }
+</style>
+{% endblock body %}
+

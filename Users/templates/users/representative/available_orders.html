@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Available Orders{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Available Orders</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">House Number</th>
+                <th scope="col">Street Name</th>
+                <th scope="col">Street Number</th>
+                <th scope="col">Postal Code</th>
+                <th scope="col">Area</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.userprofile.phone_number }}</td>
+                <td>{{ order.user.userprofile.house_number }}</td>
+                <td>{{ order.user.userprofile.street_name }}</td>
+                <td>{{ order.user.userprofile.street_number }}</td>
+                <td>{{ order.user.userprofile.postal_code }}</td>
+                <td>{{ order.user.userprofile.area }}</td>
+                <td><a href="{% url 'claim_order' order.id %}" class="btn btn-primary btn-sm">Claim</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}
